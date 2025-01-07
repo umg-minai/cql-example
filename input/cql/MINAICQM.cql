@@ -23,21 +23,21 @@ define "Recommendation 35 Tidal Volume":
 // Intervention
 
 define "Intervention VentilatedCOVID19PatientsWithARDSVentilationPlan":
-  exists([Goal] G 
-           where exists(G.target T 
+  exists([Goal] G
+           where exists(G.target T
                           where T.measure ~ E.CodeableConceptFromCode(E."Measure Tidal Volume")
                                 and T.detail is Range
                                 and T.detail.high = 7 'ml/kg'))
-    and exists([Goal] G 
-                 where exists(G.target T 
+    and exists([Goal] G
+                 where exists(G.target T
                                 where T.measure ~ E.CodeableConceptFromCode(E."Measure Pressure Plateau")
                                         and T.detail is Range
                                         and T.detail.high = 30 'cm[H2O]'))
-  
+
 
 // Recommendation 15 Prophylactic Anticoagulation
 
-define "Value Body Weight": 
+define "Value Body Weight":
   First([Observation] O where O.code = E."Measure Body Weight" return O.value)
 
 define "Recommendation 15 Prophylactic Anticoagulation":
